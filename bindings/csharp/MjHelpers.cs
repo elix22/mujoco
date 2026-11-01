@@ -78,8 +78,7 @@ public static unsafe class MjHelpers
             throw new MujocoException($"mj_addBufferVFS({name}) returned {rc}");
     }
 
-    /// <summary>A span over a MuJoCo array, e.g. <c>Span(d->qpos, m->nq)</c>. The generator maps C
-    /// <c>char*</c> to the 2-byte C# <c>char*</c>: cast those to <c>byte*</c> before indexing.</summary>
+    /// <summary>A span over a MuJoCo array, e.g. <c>Span(d->qpos, m->nq)</c>.</summary>
     public static Span<T> Span<T>(T* p, ulong count) where T : unmanaged => new(p, checked((int)count));
 
     public static string? Name(MujocoLib.mjModel_* m, MujocoLib.mjtObj type, int id) =>

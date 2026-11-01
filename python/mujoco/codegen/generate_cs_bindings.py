@@ -127,7 +127,8 @@ C_TO_CS_TYPE = {
     'unsigned int': 'uint',
     'float': 'float',
     'double': 'double',
-    'char': 'char',
+    # C char is 1 byte; C# char is 2 (UTF-16), so char fields would misplace every later field.
+    'char': 'byte',
     'unsigned char': 'byte',
     'size_t': 'UIntPtr',
     'int64_t': 'Int64',
@@ -548,8 +549,6 @@ def _field_to_cs_member(field, known_structs):
       if _is_opaque_type(inner.name):
         return f'  public void* {name};\n'
       cs_type = _resolve_type_name(inner.name)
-      if inner.name == 'char' and not field_type.is_const:
-        return f'  public char* {name};\n'
       return f'  public {cs_type}* {name};\n'
     elif isinstance(inner, ast_nodes.PointerType):
       inner_cs = _resolve_cs_type(inner)

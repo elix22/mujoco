@@ -895,10 +895,10 @@ public enum mjtSection : int{
 public unsafe struct mjLogMessage_ {
   public int level;
   public int topic;
-  public fixed char subject[1024];
-  public char* body;
-  public char* func;
-  public char* file;
+  public fixed byte subject[1024];
+  public byte* body;
+  public byte* func;
+  public byte* file;
   public int line;
   public byte timestamp;
 }
@@ -907,7 +907,7 @@ public unsafe struct mjLogMessage_ {
 public unsafe struct mjLogConfig_ {
   public byte logto_console;
   public byte logto_file;
-  public fixed char logfile[1024];
+  public fixed byte logfile[1024];
   public int topics;
 }
 
@@ -1616,14 +1616,14 @@ public unsafe struct mjModel_ {
   public int* plugin;
   public int* plugin_stateadr;
   public int* plugin_statenum;
-  public char* plugin_attr;
+  public byte* plugin_attr;
   public int* plugin_attradr;
   public int* numeric_adr;
   public int* numeric_size;
   public double* numeric_data;
   public int* text_adr;
   public int* text_size;
-  public char* text_data;
+  public byte* text_data;
   public int* tuple_adr;
   public int* tuple_size;
   public int* tuple_objtype;
@@ -1659,9 +1659,9 @@ public unsafe struct mjModel_ {
   public int* name_tupleadr;
   public int* name_keyadr;
   public int* name_pluginadr;
-  public char* names;
+  public byte* names;
   public int* names_map;
-  public char* paths;
+  public byte* paths;
   public int* B_rownnz;
   public int* B_rowadr;
   public int* B_colind;
@@ -5989,7 +5989,7 @@ public unsafe struct mjsCompiler_ {
   public byte balanceinertia;
   public byte fitaabb;
   public byte degree;
-  public fixed char eulerseq[3];
+  public fixed byte eulerseq[3];
   public byte discardvisual;
   public byte usethread;
   public byte fusestatic;
@@ -6083,7 +6083,7 @@ public unsafe struct mjvGeom_ {
   public float shininess;
   public float reflectance;
   public fixed float texrepeat[2];
-  public fixed char label[100];
+  public fixed byte label[100];
   public float camdist;
   public float modelrbound;
   public byte transparent;
@@ -6287,12 +6287,12 @@ public unsafe struct mjvFigure_ {
   public fixed float textrgb[3];
   public fixed float linergb[100 * 3];
   public fixed float range[2 * 2];
-  public fixed char xformat[20];
-  public fixed char yformat[20];
-  public fixed char minwidth[20];
-  public fixed char title[1000];
-  public fixed char xlabel[100];
-  public fixed char linename[100 * 100];
+  public fixed byte xformat[20];
+  public fixed byte yformat[20];
+  public fixed byte minwidth[20];
+  public fixed byte title[1000];
+  public fixed byte xlabel[100];
+  public fixed byte linename[100 * 100];
   public int legendoffset;
   public int subplot;
   public fixed int highlight[2];
@@ -6316,8 +6316,8 @@ public unsafe struct mjrRect_ {
 
 [StructLayout(LayoutKind.Sequential)]
 public unsafe struct mjrRendererInfo_ {
-  public char* renderer;
-  public char* backend;
+  public byte* renderer;
+  public byte* backend;
 }
 
 [StructLayout(LayoutKind.Sequential)]
@@ -6442,7 +6442,7 @@ public unsafe struct mjuiState_ {
   public int dragrect;
   public int dragbutton;
   public int dropcount;
-  public char** droppaths;
+  public byte** droppaths;
 }
 
 [StructLayout(LayoutKind.Sequential)]
@@ -6497,7 +6497,7 @@ public unsafe struct mjuiThemeColor_ {
 [StructLayout(LayoutKind.Sequential)]
 public unsafe struct mjuiItem_ {
   public int type;
-  public fixed char name[40];
+  public fixed byte name[40];
   public int state;
   public void* pdata;
   public int sectionid;
@@ -6513,7 +6513,7 @@ public unsafe struct mjuiItem_ {
 
 [StructLayout(LayoutKind.Sequential)]
 public unsafe struct mjuiSection_ {
-  public fixed char name[40];
+  public fixed byte name[40];
   public int state;
   public int modifier;
   public int shortcut;
@@ -6746,7 +6746,7 @@ public unsafe struct mjUI_ {
   public int edititem;
   public int editcursor;
   public int editscroll;
-  public fixed char edittext[300];
+  public fixed byte edittext[300];
   public mjuiItem_* editchanged;
   public int nsect;
   public mjuiSection_ sect0;
@@ -6764,10 +6764,10 @@ public unsafe struct mjUI_ {
 [StructLayout(LayoutKind.Sequential)]
 public unsafe struct mjuiDef_ {
   public int type;
-  public fixed char name[40];
+  public fixed byte name[40];
   public int state;
   public void* pdata;
-  public fixed char other[300];
+  public fixed byte other[300];
   public int otherint;
 }
 
