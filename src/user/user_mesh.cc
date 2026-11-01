@@ -501,6 +501,8 @@ void mjCMesh::CacheMesh(mjCCache* cache, const mjResource* resource) {
   mesh->inertia      = inertia;
   mesh->smoothnormal = smoothnormal;
   std::copy(scale, scale + 3, mesh->scale);
+  std::copy(refpos, refpos + 3, mesh->refpos);
+  std::copy(refquat, refquat + 4, mesh->refquat);
 
   // mesh processed data
   mesh->processed_    = processed_;
@@ -1084,6 +1086,12 @@ bool mjCMesh::LoadCachedMesh(mjCCache* cache, const mjResource* resource) {
 
     // check if scale is different
     if (scale[0] != mesh->scale[0] || scale[1] != mesh->scale[1] || scale[2] != mesh->scale[2]) {
+      return false;
+    }
+
+    // check if the reference frame is different (applied before centring, as the scale)
+    if (!std::equal(refpos, refpos + 3, mesh->refpos) ||
+        !std::equal(refquat, refquat + 4, mesh->refquat)) {
       return false;
     }
 
